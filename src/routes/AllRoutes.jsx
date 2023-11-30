@@ -2,7 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 
 import { PATHS } from "../config";
 
-import { UserHeader, PanelHeader } from "../layouts";
+import { AdminMainLayout, ShopMain } from "../layouts";
 import { PrivateRoute } from "./PrivateRoute";
 
 import Home from "../pages/Home";
@@ -19,10 +19,10 @@ import NotFound from "../pages/NotFound";
 export const AllRouters = createBrowserRouter([
   {
     path: PATHS.HOME,
-    element: <UserHeader />,
+    element: <ShopMain />,
     children: [
       {
-        path: PATHS.HOME,
+        index: true,
         element: <Home />,
       },
       {
@@ -48,7 +48,7 @@ export const AllRouters = createBrowserRouter([
     path: PATHS.PANELADMIN,
     element: (
       <PrivateRoute>
-        <PanelHeader />
+        <AdminMainLayout />
       </PrivateRoute>
     ),
     children: [
@@ -61,7 +61,7 @@ export const AllRouters = createBrowserRouter([
         element: <PanelQuantity />,
       },
       {
-        path: PATHS.PANELPRODUCTS,
+        index: true,
         element: <PanelProducts />,
       },
     ],

@@ -6,8 +6,7 @@ export const PATHS = {
   CHECKOUT: "/checkout",
   NOTFOUND: "*",
   LOGIN: "login",
-  PANELADMIN: "/",
-  PANELPRODUCTS: "/admin",
+  PANELADMIN: "/paneladmin",
   PANELORDERS: "panelOrders",
   PANELQUANTITY: "panelQuantity",
 };
