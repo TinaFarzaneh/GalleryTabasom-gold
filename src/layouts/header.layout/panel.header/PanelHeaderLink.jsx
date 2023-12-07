@@ -1,22 +1,34 @@
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import { IoArrowUndo } from "react-icons/io5";
 
 export const PanelHeaderLink = () => {
   return (
     <>
-      <nav>
+      <nav className="flex justify-center items-center gap-5 w-[100%] h-[100%]">
         <ul className="flex gap-4">
-          <li>
-            <Link to="/paneladmin">کالاها</Link>
+          <li className="navbarchild headernavbar">
+            <NavLink to="/paneladmin" className="navbarspan">
+              کالاها
+            </NavLink>
           </li>
-          <li>
-            <Link to="panelQuantity">موجودی و قیمت</Link>
+          <li className="navbarchild headernavbar">
+            <NavLink
+              to="panelQuantity"
+              className="navbarspan whitespace-nowrap"
+            >
+              موجودی و قیمت
+            </NavLink>
           </li>
-          <li>
-            <Link to="panelOrders">سفارش ها</Link>
+          <li className="navbarchild headernavbar">
+            <NavLink to="panelOrders" className="navbarspan">
+              سفارش ها
+            </NavLink>
           </li>
         </ul>
       </nav>
-      <Link to="/">بازگشت به سایت</Link>
+      <NavLink to="/">
+        <IoArrowUndo className="w-8 h-8" />
+      </NavLink>
     </>
   );
 };
