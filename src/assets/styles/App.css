@@ -1,0 +1,58 @@
+@font-face {
+  font-family: "vazir";
+  src: url("../fonts/Vazir-Regular-FD.woff2");
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "vazir";
+}
+body,
+html {
+  color: #ffd255;
+  background-color: #ebf3e8;
+}
+/****************PanelHeaderNavigation**************/
+.navbarchild {
+  transform-style: preserve-3d;
+  transition: all 0.5s ease-in-out;
+}
+.navbarchild:hover {
+  background-color: #739072;
+  transform: perspective(180px) rotateX(60deg) translateY(5px);
+  box-shadow: #ffd255 0px 5px 15px;
+}
+.navbarspan:hover {
+  transform: translate3d(0px, 0px, 15px) perspective(180px) rotateX(-35deg)
+    translateY(2px);
+}
+.active {
+  color: #fff;
+}
+/*************LOGINFORM*************/
+.background {
+  background-image: linear-gradient(
+      rgba(18, 18, 19, 0.4),
+      rgba(17, 17, 17, 0.5)
+    ),
+    url("../images/loginbg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  z-index: -1;
+}
+/**********INPUTSEARCH***********/
+.input::placeholder {
+  color: #ffd255;
+}
+/***************TABLE************/
+.table {
+  background: rgba(11, 11, 11, 0.7);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(1.7px);
+  -webkit-backdrop-filter: blur(1.7px);
+  border: 1px solid rgba(11, 11, 11, 0.3);
+}
