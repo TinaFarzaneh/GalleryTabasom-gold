@@ -1,12 +1,13 @@
 export const PATHS = {
   HOME: "/",
   PRODUCTS: "products",
-  PRODUCT: "products/product", //:productId
+  PRODUCT: "products/product",
   BASKET: "basket",
-  CHECKOUT: "/checkout",
-  NOTFOUND: "*",
-  LOGIN: "login",
+  CHECKOUT: "checkout",
+  NOTFOUND: "/*",
+  LOGIN: "/login",
   PANELADMIN: "/paneladmin",
-  PANELORDERS: "panelOrders",
-  PANELQUANTITY: "panelQuantity",
+  PANELORDERS: "panelorders",
+  PANELQUANTITY: "panelquantity",
+  // PANELPRODUCTS: "panelproducts",
 };

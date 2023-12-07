@@ -5,16 +5,16 @@ import { PATHS } from "../config";
 import { AdminMainLayout, ShopMain } from "../layouts";
 import { PrivateRoute } from "./PrivateRoute";
 
-import Home from "../pages/Home";
-import Products from "../pages/Products";
-import Product from "../pages/Product";
-import Basket from "../pages/Basket";
-import CheckOut from "../pages/CheckOut";
-import Login from "../pages/Login";
-import PanelProducts from "../pages/PanelProducts";
-import PanelQuantity from "../pages/PanelQuantity";
-import PanelOrders from "../pages/PanelOrders";
-import NotFound from "../pages/NotFound";
+import Home from "../pages/home/Home";
+import Products from "../pages/products/Products";
+import Product from "../pages/product/Product";
+import Basket from "../pages/basket/Basket";
+import CheckOut from "../pages/checkout/CheckOut";
+import Login from "../pages/login/Login";
+import PanelProducts from "../pages/panelproducts/PanelProducts";
+import PanelQuantity from "../pages/panelquantity/PanelQuantity";
+import PanelOrders from "../pages/panelorders/PanelOrders";
+import NotFound from "../pages/notfound/NotFound";
 
 export const AllRouters = createBrowserRouter([
   {
