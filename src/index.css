@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer components {
-  html {
-    @apply text-[#31344b];
+  .headernavbar {
+    @apply flex justify-center items-center w-[70px] h-[70px] rounded-[50%] mx-3 cursor-pointer;
   }
 }
