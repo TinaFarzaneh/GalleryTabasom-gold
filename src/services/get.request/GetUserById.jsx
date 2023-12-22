@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "../../api/http";
+import { api } from "../../api/http";
 import { USERS_URL } from "../../config";
 
 export const GetUserById = ({ userId }) => {
@@ -9,7 +9,7 @@ export const GetUserById = ({ userId }) => {
     data: userData,
   } = useQuery({
     queryKey: ["userData", userId],
-    queryFn: () => axios.get(`${USERS_URL}/${userId}`).then((res) => res.data),
+    queryFn: () => api.get(`${USERS_URL}/${userId}`).then((res) => res.data),
   });
 
   if (isUserPending) return "Loading...";

@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { useState } from "react";
-import axios from "../../api/http";
+import { api } from "../../api/http";
 import { ORDERS_URL } from "../../config";
 import {
+  Button,
   MainPagination,
   Maintable,
   RadioInput,
@@ -27,7 +28,7 @@ const PanelOrders = () => {
   } = useQuery({
     queryKey: ["panelOrdersData", currentPage, delivered, sortDirection],
     queryFn: () =>
-      axios
+      api
         .get(
           sortDirection === "up"
             ? `${ORDERS_URL}?page=${currentPage}&limit=${perPage}&deliveryStatus=${delivered}&sort=-createdAt`
@@ -37,7 +38,6 @@ const PanelOrders = () => {
     keepPreviousData: true,
     staleTime: 60000,
   });
-  console.log(ordersData);
   if (isOrdersPending) return "Loading...";
   if (ordersError) return ordersError.message;
 
@@ -86,7 +86,6 @@ const PanelOrders = () => {
       title: "",
     },
   ];
-  console.log(ordersData);
   return (
     <div className="mt-20">
       <div className="flex items-center justify-between">
@@ -110,20 +109,20 @@ const PanelOrders = () => {
       </div>
       <Maintable columns={columns}>
         {orders.map((order) => (
-          <tr key={order._id} className="border-b hover:bg-[#D0E7D2]">
-            <td className="whitespace-nowrap px-6 py-4">
+          <tr key={order._id} className="border-b hover:bg-[#739072]">
+            <td className="whitespace-nowrap px-6 py-5">
               <GetUserById userId={order.user} />
             </td>
-            <td className="whitespace-nowrap px-6 py-4">
+            <td className="whitespace-nowrap px-6">
               {order.totalPrice.toLocaleString()} تومان
             </td>
-            <td className="whitespace-nowrap pr-10 pl-6 py-4">
+            <td className="whitespace-nowrap pr-10 pl-6">
               {jalaliMoment(order.createdAt, "YYYY-MM-DD").format(
                 "jYYYY/jMM/jDD"
               )}
             </td>
-            <td className="whitespace-nowrap px-6 py-4 text-center cursor-pointer">
-              بررسی سفارش
+            <td className="whitespace-nowrap px-6 text-center cursor-pointer">
+              <Button title={"بررسی سفارش"} className="border" />
             </td>
           </tr>
         ))}
