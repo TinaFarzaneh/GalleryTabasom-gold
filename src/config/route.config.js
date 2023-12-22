@@ -1,7 +1,8 @@
 export const PATHS = {
   HOME: "/",
   PRODUCTS: "products",
-  PRODUCT: "products/product",
+  PRODUCT: "products/:id",
+  // PRODUCT: "product/:id",
   BASKET: "basket",
   CHECKOUT: "checkout",
   NOTFOUND: "/*",
@@ -9,5 +10,4 @@ export const PATHS = {
   PANELADMIN: "/paneladmin",
   PANELORDERS: "panelorders",
   PANELQUANTITY: "panelquantity",
-  // PANELPRODUCTS: "panelproducts",
 };
