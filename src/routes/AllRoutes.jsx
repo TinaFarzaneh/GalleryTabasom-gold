@@ -1,20 +1,25 @@
 import { createBrowserRouter } from "react-router-dom";
-
+import { AdminMainWithGuard, ShopMain } from "../layouts";
+import { lazy } from "react";
 import { PATHS } from "../config";
-
-import { AdminMainLayout, ShopMain } from "../layouts";
-import { PrivateRoute } from "./PrivateRoute";
-
+import { Loadable } from "../components";
 import Home from "../pages/home/Home";
-import Products from "../pages/products/Products";
-import Product from "../pages/product/Product";
+import Login from "../pages/login/Login";
 import Basket from "../pages/basket/Basket";
 import CheckOut from "../pages/checkout/CheckOut";
-import Login from "../pages/login/Login";
-import PanelProducts from "../pages/panelproducts/PanelProducts";
-import PanelQuantity from "../pages/panelquantity/PanelQuantity";
-import PanelOrders from "../pages/panelorders/PanelOrders";
+import Products from "../pages/products/Products";
 import NotFound from "../pages/notfound/NotFound";
+import SingleProduct from "../pages/singleproduct/SingleProduct";
+
+const PanelProducts = Loadable(
+  lazy(() => import("../pages/panelproducts/PanelProducts"))
+);
+const PanelQuantity = Loadable(
+  lazy(() => import("../pages/panelquantity/PanelQuantity"))
+);
+const PanelOrders = Loadable(
+  lazy(() => import("../pages/panelorders/PanelOrders"))
+);
 
 export const AllRouters = createBrowserRouter([
   {
@@ -35,7 +40,7 @@ export const AllRouters = createBrowserRouter([
       },
       {
         path: PATHS.PRODUCT,
-        element: <Product />,
+        element: <SingleProduct />,
       },
 
       {
@@ -46,11 +51,7 @@ export const AllRouters = createBrowserRouter([
   },
   {
     path: PATHS.PANELADMIN,
-    element: (
-      <PrivateRoute>
-        <AdminMainLayout />
-      </PrivateRoute>
-    ),
+    element: <AdminMainWithGuard />,
     children: [
       {
         path: PATHS.PANELORDERS,

@@ -1,7 +1,6 @@
 import { TCell } from "./Tcell";
 
 export const THead = ({ columns = [] }) => {
-  console.log(columns);
   return (
     <thead className="border-b font-medium bg-[#739072] shadow-sm">
       <tr>

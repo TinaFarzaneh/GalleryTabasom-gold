@@ -1,5 +1,6 @@
 import { Outlet } from "react-router-dom";
 import { PanelHeader } from "../../header.layout";
+import { WithGuard } from "../../../components";
 
 export const AdminMainLayout = () => {
   return (
@@ -11,3 +12,5 @@ export const AdminMainLayout = () => {
     </>
   );
 };
+
+export const AdminMainWithGuard = WithGuard(AdminMainLayout);

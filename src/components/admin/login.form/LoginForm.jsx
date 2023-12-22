@@ -4,24 +4,31 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { NavLink, useNavigate } from "react-router-dom";
 import { PATHS } from "../../../config";
+import { useDispatch } from "react-redux";
+import { loginUser } from "../../../features";
 
-export const LoginForm = () => {
+export const LoginForm = (shouldNavigate = true) => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const formik = useFormik({
     initialValues: {
       username: "",
       password: "",
     },
-
-    onSubmit: (values) => {
-      console.log(JSON.stringify(values, null, 2));
-    },
-
     validationSchema: Yup.object({
       username: Yup.string().required("نام کاربری الزامی است"),
       password: Yup.string().required("رمز عبور الزامی است"),
     }),
+
+    onSubmit: () => {
+      dispatch(loginUser(formik.values));
+      if (shouldNavigate) {
+        navigate(`${PATHS.PANELADMIN}/${PATHS.PANELORDERS}`);
+      }
+    },
   });
-  const navigate = useNavigate();
+
   return (
     <section className="h-screen background">
       <div className="h-full px-6 mx-auto">
@@ -53,7 +60,7 @@ export const LoginForm = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.username}
-                  className={`lg:bg-transparent mt-1 p-2 w-full border rounded-md text-gray-200 font-semibold ${
+                  className={`lg:bg-transparent mt-1 p-2 w-full border rounded-md font-semibold ${
                     formik.touched.username && formik.errors.username
                       ? "border-red-600 focus:outline-none focus:border-red-600"
                       : "focus:outline-none focus:border-[#618264]"
@@ -80,7 +87,7 @@ export const LoginForm = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
-                  className={`lg:bg-transparent mt-1 p-2 w-full border rounded-md lg:text-gray-200 font-semibold ${
+                  className={`lg:bg-transparent mt-1 p-2 w-full border rounded-md font-semibold ${
                     formik.touched.password && formik.errors.password
                       ? "border-red-600 focus:outline-none focus:border-red-600"
                       : "focus:outline-none focus:border-[#618264]"
@@ -93,9 +100,7 @@ export const LoginForm = () => {
                 </div>
               </div>
               <button
-                onClick={() =>
-                  navigate(`${PATHS.PANELADMIN}/${PATHS.PANELORDERS}`)
-                }
+                onSubmit={formik.handleSubmit}
                 type="submit"
                 className="w-full rounded text-white bg-green-500 px-6 pb-2 pt-2.5 text-lg border-[#ffd255]"
               >

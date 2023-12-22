@@ -13,6 +13,16 @@ body,
 html {
   color: #ffd255;
   background-color: #ebf3e8;
+  background-image: linear-gradient(
+      rgba(18, 18, 19, 0.4),
+      rgba(17, 17, 17, 0.5)
+    ),
+    url("../images/loginbg.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  z-index: -1;
 }
 /****************PanelHeaderNavigation**************/
 .navbarchild {
@@ -31,18 +41,6 @@ html {
 .active {
   color: #fff;
 }
-/*************LOGINFORM*************/
-.background {
-  background-image: linear-gradient(
-      rgba(18, 18, 19, 0.4),
-      rgba(17, 17, 17, 0.5)
-    ),
-    url("../images/loginbg.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-  z-index: -1;
-}
 /**********INPUTSEARCH***********/
 .input::placeholder {
   color: #ffd255;
@@ -56,3 +54,24 @@ html {
   -webkit-backdrop-filter: blur(1.7px);
   border: 1px solid rgba(11, 11, 11, 0.3);
 }
+/* **** *****/
+.modal {
+  background: rgba(11, 11, 11, 0.7);
+}
+/* ******************** */
+.ck-editor__editable {
+  background-color: transparent !important;
+  text-align: right !important;
+  height: 4rem;
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  border-color: #abd6a9 !important;
+  border-top: none !important;
+  color: white !important;
+}
+
+.ck-editor__editable::-webkit-scrollbar {
+  display: none;
+}
+

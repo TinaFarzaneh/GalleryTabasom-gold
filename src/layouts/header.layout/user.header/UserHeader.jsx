@@ -5,7 +5,7 @@ import { NavLink } from "react-router-dom";
 export const UserHeader = () => {
   return (
     <>
-      <header className="bg-[#739072] px-7 shadow-md">
+      <header className="fixed w-full top-0 z-50 bg-[#739072] px-7 shadow-md">
         <div className="flex justify-between items-center py-2 px-10 rounded-md">
           <div className="flex items-center justify-between	text-xl font-bold gap-2 cursor-pointer">
             <NavLink to="/">

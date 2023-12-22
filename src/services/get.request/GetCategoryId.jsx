@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "../../api/http";
+import { api } from "../../api/http";
 import { CATEGORIES_URL } from "../../config";
 
 export const GetCategoryId = ({ categoryId }) => {
@@ -10,7 +10,7 @@ export const GetCategoryId = ({ categoryId }) => {
   } = useQuery({
     queryKey: ["panelCategoryData", categoryId],
     queryFn: () =>
-      axios.get(`${CATEGORIES_URL}/${categoryId}`).then((res) => res.data),
+      api.get(`${CATEGORIES_URL}/${categoryId}`).then((res) => res.data),
   });
 
   if (isCategoryPending) return "Loading...";

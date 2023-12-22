@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { SUBCATEGORIES_URL } from "../../config";
-import axios from "../../api/http";
+import { api } from "../../api/http";
 
 export const GetSubcategories = () => {
   const {
@@ -9,16 +9,16 @@ export const GetSubcategories = () => {
     data: subcategoryData,
   } = useQuery({
     queryKey: ["subcategoryData"],
-    queryFn: () => axios.get(`${SUBCATEGORIES_URL}`).then((res) => res.data),
+    queryFn: () => api.get(`${SUBCATEGORIES_URL}`).then((res) => res.data),
   });
 
   if (isSubcategoryPending) return "Loading...";
   if (subcategoryError) return subcategoryError.message;
-  console.log(subcategoryData);
 
-  return subcategoryData.data.categories.map((category) => ({
-    key: category._id,
-    name: category.name,
-    id: category._id,
+  return subcategoryData.data.subcategories.map((subcategory) => ({
+    key: subcategory._id,
+    name: subcategory.name,
+    id: subcategory._id,
+    category: subcategory.category,
   }));
 };

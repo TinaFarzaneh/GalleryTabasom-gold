@@ -1,1 +1,1 @@
-export * from "./AdminMainLayout";
+export * from "./AdminMainWithGuard";

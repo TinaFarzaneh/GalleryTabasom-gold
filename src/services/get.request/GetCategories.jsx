@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { CATEGORIES_URL } from "../../config";
-import axios from "../../api/http";
+import { api } from "../../api/http";
 
 export const GetCategories = () => {
   const {
@@ -9,12 +9,11 @@ export const GetCategories = () => {
     data: categoryData,
   } = useQuery({
     queryKey: ["categoryData"],
-    queryFn: () => axios.get(`${CATEGORIES_URL}`).then((res) => res.data),
+    queryFn: () => api.get(`${CATEGORIES_URL}`).then((res) => res.data),
   });
 
   if (isCategoryPending) return "Loading...";
   if (categoryError) return categoryError.message;
-  console.log(categoryData);
 
   return categoryData.data.categories.map((category) => ({
     key: category._id,

@@ -9,7 +9,7 @@ export default function Inputsearch() {
           type="search"
           className="outline-0 w-96 py-2 input cursor-pointer"
           id="inputSearch"
-          placeholder="محصول موردنظر خود را سرچ کنید"
+          placeholder="کالای موردنظر خود را سرچ کنید"
         />
       </div>
     </>

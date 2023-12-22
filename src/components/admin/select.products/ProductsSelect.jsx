@@ -17,7 +17,7 @@ export const ProductsSelect = ({ onCategoryChange, data }) => {
         onChange={handleCategoryChange}
       >
         <option value="all" className="bg-[#739072]">
-          تمام دسته بندی ها
+          تمام گروه بندی ها
         </option>
         {arrayOfCategory.map((category, index) => (
           <option
