@@ -1,9 +1,8 @@
 import { PRODUCTS_URL } from "../config";
-import axios from "./http";
+import api from "./http";
 export const GetAllProducts = async () => {
   try {
-    const response = await axios.get(PRODUCTS_URL);
-    // console.log(response);
+    const response = await api.get(PRODUCTS_URL);
     return {
       products: response.data,
     };

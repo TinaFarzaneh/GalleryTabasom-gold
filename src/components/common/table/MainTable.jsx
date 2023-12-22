@@ -8,7 +8,7 @@ export const Maintable = ({ children, columns }) => {
             <div className="overflow-hidden border-2 border-[#739072] rounded-3xl">
               <table className="min-w-full text-sm font-light text-start table">
                 <THead columns={columns} />
-                <tbody className="text-[#739072]">{children}</tbody>
+                <tbody className="text-[#ffd255]">{children}</tbody>
               </table>
             </div>
           </div>
