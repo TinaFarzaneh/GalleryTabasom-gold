@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import axios from "../../api/http";
+import { api } from "../../api/http";
 import { SUBCATEGORIES_URL } from "../../config";
 
 export const GetSubcategoryId = ({ subcategoryId }) => {
@@ -10,9 +10,7 @@ export const GetSubcategoryId = ({ subcategoryId }) => {
   } = useQuery({
     queryKey: ["panelCategoryData", subcategoryId],
     queryFn: () =>
-      axios
-        .get(`${SUBCATEGORIES_URL}/${subcategoryId}`)
-        .then((res) => res.data),
+      api.get(`${SUBCATEGORIES_URL}/${subcategoryId}`).then((res) => res.data),
   });
 
   if (isSubcategoryPending) return "Loading...";
