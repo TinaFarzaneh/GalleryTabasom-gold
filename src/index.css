@@ -7,3 +7,24 @@
     @apply flex justify-center items-center w-[70px] h-[70px] rounded-[50%] mx-3 cursor-pointer;
   }
 }
+
+/* .custom-input {
+  border-radius: 4px;
+  border: 1px #525252 solid;
+  padding: 7px 12px;
+  background-color: transparent;
+  width: 100% !important;
+  color: #f9d3a7;
+}
+
+.custom-input::placeholder {
+  color: #737373 !important;
+}
+.rmdp-container {
+  width: 100%;
+}
+
+.custom-input:focus {
+  outline: none;
+  border: 1px solid #3b82f6;
+} */
