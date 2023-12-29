@@ -11,7 +11,11 @@ export const PanelHeader = () => {
             className="flex text-xl font-bold cursor-pointer gap-2"
             to="/"
           >
-            <img src={gallerylogo} className="w-[40px] h-[40px]" />
+            <img
+              src={gallerylogo}
+              alt="gallerylogo"
+              className="w-[40px] h-[40px]"
+            />
             <p className="whitespace-nowrap drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
               پنل مدیریت گالری تبسم
             </p>

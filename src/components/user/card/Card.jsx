@@ -13,9 +13,6 @@ export const Card = ({ image, name, price }) => {
         <p className="mb-4 text-base text-[#81f77b]">
           {price.toLocaleString()} تومان
         </p>
-        {/* <p className="text-xs "> */}
-        {/* <RateSvg rate={rate} /> */}
-        {/* </p> */}
       </div>
     </div>
   );
