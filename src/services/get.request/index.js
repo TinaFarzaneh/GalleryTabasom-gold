@@ -5,3 +5,4 @@ export * from "./GetSubcategories";
 export * from "./GetSubcategoryId";
 export * from "./ProductsFromCategory";
 export * from "./GetAllProducts";
+export * from "./GetOrders";

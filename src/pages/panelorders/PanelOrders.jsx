@@ -1,17 +1,20 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { IoMdArrowDropdown, IoMdArrowDropup } from "react-icons/io";
 import { useState } from "react";
 import { api } from "../../api/http";
 import { ORDERS_URL } from "../../config";
+import { TbCheckupList } from "react-icons/tb";
 import {
   Button,
+  CheckOrderModal,
   MainPagination,
   Maintable,
   RadioInput,
   SectionTable,
+  Spinner,
 } from "../../components";
 import jalaliMoment from "jalali-moment";
-import { GetUserById } from "../../services";
+import { GetOrders, GetUserById } from "../../services";
 
 const PanelOrders = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -19,30 +22,51 @@ const PanelOrders = () => {
   const [sortDirection, setSortDirection] = useState("up");
 
   const perPage = 4;
+  // **********************
+  const [showModal, setShowModal] = useState(false);
+  const [spinner, setSpinner] = useState(false);
+
+  const [orderId, setOrderId] = useState("");
+
+  const queryClient = useQueryClient();
+
+  // ***********GetRequestForOrders***********
+  const [orders, totalPages, total] = GetOrders(
+    currentPage,
+    perPage,
+    delivered
+    // sortDirection
+  );
+
   const handlePageChange = (page) => setCurrentPage(page);
 
-  const {
-    isPending: isOrdersPending,
-    error: ordersError,
-    data: ordersData,
-  } = useQuery({
-    queryKey: ["panelOrdersData", currentPage, delivered, sortDirection],
-    queryFn: () =>
-      api
-        .get(
-          sortDirection === "up"
-            ? `${ORDERS_URL}?page=${currentPage}&limit=${perPage}&deliveryStatus=${delivered}&sort=-createdAt`
-            : `${ORDERS_URL}?page=${currentPage}&limit=${perPage}&deliveryStatus=${delivered}&sort=createdAt`
-        )
-        .then((res) => res.data),
-    keepPreviousData: true,
-    staleTime: 60000,
+  // *******************GetOrder*******************
+  const { isPending, error, data } = useQuery({
+    queryKey: ["orderData", orderId],
+    queryFn: () => api.get(`${ORDERS_URL}/${orderId}`).then((res) => res.data),
   });
-  if (isOrdersPending) return "Loading...";
-  if (ordersError) return ordersError.message;
+  // *****************EditOrder && Mutation*********************
 
-  const { orders } = ordersData.data;
-  const { total } = ordersData;
+  const editOrder = useMutation({
+    mutationFn: () => {
+      return api.patch(`${ORDERS_URL}/${orderId}`, {
+        deliveryStatus: true,
+      });
+    },
+    onMutate: () => {
+      setSpinner(true);
+    },
+    onSuccess: async () => {
+      await queryClient.invalidateQueries({ queryKey: ["orderData"] });
+      setOrderId(null);
+    },
+    onError: (error) => {
+      console.log("error", error);
+    },
+    onSettled: () => {
+      setSpinner(false);
+    },
+  });
 
   const handleDeliveredFilter = () => {
     setDelivered(true);
@@ -54,7 +78,17 @@ const PanelOrders = () => {
     setCurrentPage(1);
   };
 
-  const totalPages = Math.ceil(total / perPage);
+  const handleShowCheckOrderModal = (id) => {
+    setOrderId(id);
+    setShowModal(true);
+  };
+
+  const handleDeliveryStatus = () => {
+    editOrder.mutate();
+  };
+
+  if (isPending) return <Spinner />;
+  if (error) return error.message;
 
   const columns = [
     {
@@ -108,31 +142,47 @@ const PanelOrders = () => {
         </div>
       </div>
       <Maintable columns={columns}>
-        {orders.map((order) => (
-          <tr key={order._id} className="border-b hover:bg-[#739072]">
-            <td className="whitespace-nowrap px-6 py-5">
-              <GetUserById userId={order.user} />
-            </td>
-            <td className="whitespace-nowrap px-6">
-              {order.totalPrice.toLocaleString()} تومان
-            </td>
-            <td className="whitespace-nowrap pr-10 pl-6">
-              {jalaliMoment(order.createdAt, "YYYY-MM-DD").format(
-                "jYYYY/jMM/jDD"
-              )}
-            </td>
-            <td className="whitespace-nowrap px-6 text-center cursor-pointer">
-              <Button title={"بررسی سفارش"} className="border" />
-            </td>
-          </tr>
-        ))}
+        {Array.isArray(orders) &&
+          orders.map((order) => (
+            <tr key={order._id} className="border-b hover:bg-[#73907292]">
+              <td className="whitespace-nowrap px-6 py-5">
+                <GetUserById userId={order.user} />
+              </td>
+              <td className="whitespace-nowrap px-6">
+                {order.totalPrice.toLocaleString()} تومان
+              </td>
+              <td className="whitespace-nowrap pr-10 pl-6">
+                {jalaliMoment(order.createdAt, "YYYY-MM-DD").format(
+                  "jYYYY/jMM/jDD"
+                )}
+              </td>
+              <td className="whitespace-nowrap px-6 text-center cursor-pointer flex items-center">
+                <Button
+                  onClick={() => handleShowCheckOrderModal(order._id)}
+                  title={"بررسی سفارش"}
+                  className="border"
+                />
+                <TbCheckupList className="text-xl" />
+              </td>
+            </tr>
+          ))}
       </Maintable>
-      {ordersData.total_pages > 1 && (
+      {total.total_pages > 1 && (
         <MainPagination
           totalPages={totalPages}
           currentPage={currentPage}
           onPageChange={handlePageChange}
           perPage={perPage}
+          total={total}
+        />
+      )}
+      {showModal && (
+        <CheckOrderModal
+          delivered={delivered}
+          data={data}
+          // onChangeDeliveredStatus={setDelivered(true)}
+          onEditDeliveryStatus={handleDeliveryStatus}
+          onClose={() => setShowModal(false)}
         />
       )}
     </div>
