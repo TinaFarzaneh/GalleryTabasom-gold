@@ -3,8 +3,7 @@ import { BASE_URL } from "../config";
 import { store } from "../store";
 import { refreshTokenThunk } from "../features";
 
-export const api = axios.create({ baseURL: BASE_URL, timeout: 80000 });
-api.defaults.baseURL = BASE_URL;
+export const api = axios.create({ baseURL: BASE_URL });
 
 // Add a request interceptor
 api.interceptors.request.use(
@@ -22,22 +21,22 @@ api.interceptors.request.use(
 );
 
 // Add a response interceptor
+let isRefreshingToken = false;
 
 api.interceptors.response.use(
   function (response) {
     return response;
   },
   async function (error) {
-    console.log("error http:", error);
     const state = store.getState();
     const refreshToken = state.auth.refreshToken;
 
-    if (error.response.status === 401 || error.response.status === 403) {
+    if (error?.response?.status === 401) {
       const originalRequest = error.config;
-      if (!originalRequest._retry) {
-        originalRequest._retry = true;
+      if (!isRefreshingToken) {
+        isRefreshingToken = true;
 
-        store
+        return store
           .dispatch(refreshTokenThunk({ refreshToken }))
           .unwrap()
           .then((data) => {
@@ -47,13 +46,11 @@ api.interceptors.response.use(
             return api(originalRequest);
           })
           .catch((error) => {
-            console.log(error);
+            throw error;
+          })
+          .finally(() => {
+            isRefreshingToken = false;
           });
-        console.log(
-          "originalRequest.headers",
-          originalRequest.headers["Authorization"]
-        );
-        return api(originalRequest);
       }
     }
     return Promise.reject(error);

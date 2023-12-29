@@ -40,7 +40,7 @@ const PanelProducts = () => {
     queryFn: () =>
       api
         .get(
-          `${PRODUCTS_URL}?page=${currentPage}&limit=${perPage}${
+          `${PRODUCTS_URL}?page=${currentPage}&sort=-createdAt&limit=${perPage}${
             selectedCategory !== "all" ? `&category=${selectedCategory} ` : ""
           }`
         )
@@ -196,11 +196,12 @@ const PanelProducts = () => {
       />
       <Maintable columns={columns}>
         {products.map((product) => (
-          <tr key={product._id} className="border-b hover:bg-[#739072]">
+          <tr key={product._id} className="border-b hover:bg-[#73907292]">
             <td className="px-6">
               <div>
                 <img
                   src={`http://localhost:8000/images/products/thumbnails/${product.thumbnail}`}
+                  alt="thumbnailImage"
                   className="rounded-lg w-16 h-9"
                 />
               </div>

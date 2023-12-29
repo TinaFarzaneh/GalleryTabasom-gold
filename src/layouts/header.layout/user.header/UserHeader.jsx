@@ -9,7 +9,11 @@ export const UserHeader = () => {
         <div className="flex justify-between items-center py-2 px-10 rounded-md">
           <div className="flex items-center justify-between	text-xl font-bold gap-2 cursor-pointer">
             <NavLink to="/">
-              <img src={logo} className="w-[80px] h-[80px] rounded-[50%]" />
+              <img
+                src={logo}
+                alt="logo"
+                className="w-[80px] h-[80px] rounded-[50%]"
+              />
             </NavLink>
             <p className="text-[#ffd255] text-2xl drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
               گالری تبسم

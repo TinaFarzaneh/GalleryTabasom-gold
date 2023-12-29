@@ -37,17 +37,17 @@ export const AddEditModal = ({ onClose, onAdd, onEdit, product }) => {
   }, []);
   //*************************/
   const validationSchema = Yup.object({
-    name: Yup.string().trim().required("پر کردن این فیلد الزامی است"),
-    description: Yup.string().trim().required("وارد کردن توضیحات الزامی است"),
-    brand: Yup.string().trim().required("وارد کردن برند الزامی است"),
+    name: Yup.string().trim().required("پر کردن این فیلد الزامی است *"),
+    description: Yup.string().trim().required("پر کردن این فیلد الزامی است *"),
+    brand: Yup.string().trim().required("پر کردن این فیلد الزامی است *"),
     price: Yup.number()
       .min(0, "قیمت نمی‌تواند منفی باشد")
-      .required("وارد کردن قیمت الزامی است"),
+      .required("پر کردن این فیلد الزامی است *"),
     quantity: Yup.number()
       .min(0, "موجودی نمی‌تواند منفی باشد")
-      .required("وارد کردن موجودی الزامی است"),
-    subcategory: Yup.string().required("وارد کردن زیردسته الزامی است"),
-    category: Yup.string().required("وارد کردن دسته بندی الزامی است"),
+      .required("پر کردن این فیلد الزامی است *"),
+    subcategory: Yup.string().required("پر کردن این فیلد الزامی است *"),
+    category: Yup.string().required("پر کردن این فیلد الزامی است *"),
     // thumbnail: Yup.mixed().required("وارد کردن تصویر کوچک الزامی است"),
     // images: Yup.mixed().required("وارد کردن تصویر کالا الزامی است"),
   });
