@@ -6,3 +6,4 @@ export * from "./forms";
 export * from "./select.box.section";
 export * from "./ck_editor";
 export * from "./loadeable";
+export * from "./spinner";
