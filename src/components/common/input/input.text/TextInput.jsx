@@ -12,7 +12,7 @@ export const TextInput = ({
   return (
     <div className="mb-3 w-full text-right">
       <label
-        className="block text-[#abd6a9] text-sm font-bold mb-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.9)] "
+        className="block text-[#ffd255] text-sm font-bold mb-2 drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.9)] "
         htmlFor={name}
       >
         <div className="flex items-center gap-4">

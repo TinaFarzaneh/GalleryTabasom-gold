@@ -115,7 +115,7 @@ const PanelQuantity = () => {
       />
       <Maintable columns={columns}>
         {products.map((product) => (
-          <tr key={product._id} className="border-b hover:bg-[#739072]">
+          <tr key={product._id} className="border-b hover:bg-[#73907292]">
             <td className="whitespace-nowrap px-6 py-5">{product.name}</td>
 
             <td className="whitespace-nowrap px-6">

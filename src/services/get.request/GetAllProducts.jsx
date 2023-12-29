@@ -4,7 +4,7 @@ import { PRODUCTS_URL } from "../../config";
 
 export const GetAllProducts = (
   currentPage = 1,
-  TRowsPerPage = 2,
+  perPage = 2,
   selectedCategory
 ) => {
   const { isPending, error, data } = useQuery({
@@ -12,7 +12,7 @@ export const GetAllProducts = (
     queryFn: () =>
       api
         .get(
-          `${PRODUCTS_URL}?page=${currentPage}&limit=${TRowsPerPage}${
+          `${PRODUCTS_URL}?page=${currentPage}&limit=${perPage}${
             selectedCategory !== "all" ? `&category=${selectedCategory}` : ""
           }`
         )
