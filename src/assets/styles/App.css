@@ -74,4 +74,33 @@ html {
 .ck-editor__editable::-webkit-scrollbar {
   display: none;
 }
+/********************/
+.custom-input {
+  border-radius: 4px;
+  border: 1px #525252 solid;
+  padding: 7px 12px;
+  background-color: transparent;
+  width: 100% !important;
+  color: black;
+}
 
+.custom-input::placeholder {
+  color: #737373 !important;
+}
+.rmdp-container {
+  width: 100%;
+}
+
+.rmdp-container input {
+  color: #e4d4a7;
+  background-color: transparent;
+  border: 1px #d3e6d2 solid;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.custom-input:focus {
+  outline: none;
+  border: 1px solid #3b82f6;
+}
