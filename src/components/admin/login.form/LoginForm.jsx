@@ -7,7 +7,7 @@ import { PATHS } from "../../../config";
 import { useDispatch } from "react-redux";
 import { loginUser } from "../../../features";
 
-export const LoginForm = (shouldNavigate = true) => {
+export const LoginForm = (shouldNavigate) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -42,7 +42,7 @@ export const LoginForm = (shouldNavigate = true) => {
                   className="w-[100px] h-[100px] mr-44 cursor-pointer"
                 />
               </NavLink>
-              <h4 className="mb-12 mt-1 pb-1 text-3xl font-extrabold text-center text-[#ffd255]">
+              <h4 className="mb-12 mt-1 pb-1 text-3xl font-extrabold text-center text-[#ffd255] drop-shadow-[0_1.2px_1.2px_rgba(0,0,0,0.8)]">
                 ورود به پنل مدیریت گالری تبسم
               </h4>
               <div className="mb-6">
@@ -106,6 +106,11 @@ export const LoginForm = (shouldNavigate = true) => {
               >
                 ورود
               </button>
+              {!shouldNavigate && (
+                <p className="text-red-500 text-lg text-center mt-5">
+                  نام کاربری یا پسورد نادرست است!!
+                </p>
+              )}
               <NavLink
                 to="/"
                 className="flex items-center justify-center mt-6 gap-2 text-[#ffd255]"
