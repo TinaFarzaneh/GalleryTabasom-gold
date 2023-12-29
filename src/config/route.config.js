@@ -10,4 +10,5 @@ export const PATHS = {
   PANELADMIN: "/paneladmin",
   PANELORDERS: "panelorders",
   PANELQUANTITY: "panelquantity",
+  RESULTPAYMENT: "resultpayment/:resultType",
 };

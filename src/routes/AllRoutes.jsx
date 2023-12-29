@@ -10,6 +10,7 @@ import CheckOut from "../pages/checkout/CheckOut";
 import Products from "../pages/products/Products";
 import NotFound from "../pages/notfound/NotFound";
 import SingleProduct from "../pages/singleproduct/SingleProduct";
+import ResultPayment from "../pages/result.payment/ResultPayment.jsx";
 
 const PanelProducts = Loadable(
   lazy(() => import("../pages/panelproducts/PanelProducts"))
@@ -46,6 +47,10 @@ export const AllRouters = createBrowserRouter([
       {
         path: PATHS.CHECKOUT,
         element: <CheckOut />,
+      },
+      {
+        path: PATHS.RESULTPAYMENT,
+        element: <ResultPayment />,
       },
     ],
   },

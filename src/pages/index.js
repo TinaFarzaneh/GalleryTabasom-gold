@@ -8,3 +8,4 @@ export * from "./panelproducts";
 export * from "./panelquantity";
 export * from "./product";
 export * from "./products";
+export * from "./result.payment";
